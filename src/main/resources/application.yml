@@ -1,0 +1,11 @@
+spring:
+  profiles:
+    active: dev
+  cache:
+    type: redis
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+  mapper-locations: classpath*:/mapper/*Dao.xml
