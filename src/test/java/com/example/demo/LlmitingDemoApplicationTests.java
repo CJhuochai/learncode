@@ -1,11 +1,15 @@
 package com.example.demo;
 
 
+import com.alibaba.excel.EasyExcel;
 import com.alibaba.fastjson.JSON;
+import com.example.demo.entity.UserExport;
 import com.example.demo.listener.PersonEvent;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.junit.jupiter.api.Test;
 import org.redisson.api.RAtomicLong;
 import org.redisson.api.RBucket;
@@ -18,7 +22,10 @@ import org.springframework.scheduling.quartz.SimpleThreadPoolTaskExecutor;
 import org.springframework.util.Base64Utils;
 import org.springframework.web.context.WebApplicationContext;
 
+import java.io.*;
+import java.text.MessageFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.*;
 import java.util.concurrent.FutureTask;
 import java.util.concurrent.TimeUnit;
@@ -140,9 +147,33 @@ class LlmitingDemoApplicationTests {
         return biFunction.apply(target,datas) + 1;
     }
 
-    public static void main(String[] args) {
-        String token1 = "68eb5da2-7f74-4a54-872b-eda284163045:c2269b3c-c3b8-49a9-9549-738c4f192912";
-        final String s2 = Base64Utils.encodeToString(token1.getBytes());
-        System.out.println(s2);
+    public static void main(String[] args) throws FileNotFoundException {
+        /*List<UserExport> users = new ArrayList<>();
+        for (int i = 0;i<20;i++){
+            UserExport user = new UserExport();
+            user.setId("chenjian:" + i);
+            user.setAge(10 + i);
+            user.setName("陈健"+i);
+            user.setDate(new Date());
+            users.add(user);
+        }
+        FileOutputStream outputStream = new FileOutputStream(new File("F:/userInfo.xlsx"));
+        EasyExcel.write(outputStream,UserExport.class).sheet("用户信息").doWrite(users);*/
+        String msg = "【正邦奖】：验证码：{0}，验证码15分钟内有效，此验证码仅用于正邦奖网站的验证，请勿泄露给他人";
+        final String format = MessageFormat.format(msg, "1234");
+        System.out.println(format);
+    }
+
+    @Test
+    public void importExcel() throws FileNotFoundException {
+        FileInputStream inputStream = new FileInputStream(new File("F:/userInfo.xlsx"));
+        final List<UserExport> objects = EasyExcel.read(inputStream).head(UserExport.class).sheet().doReadSync();
+        System.out.println(JSON.toJSONString(objects));
+    }
+
+    @Test
+    public void jsoup1() throws IOException {
+        final Document document = Jsoup.connect("http://www.baidu.com/").data("wd","你好").get();
+        System.out.println(document);
     }
 }

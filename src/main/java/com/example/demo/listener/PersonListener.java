@@ -14,10 +14,6 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 public class PersonListener {
-    /*@Override
-    public void onApplicationEvent(PersonEvent event) {
-        log.error("person info:age:{},name:{}",event.getAge(),event.getName());
-    }*/
 
     @EventListener
     public void sendMsg(PersonEvent event){

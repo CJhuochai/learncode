@@ -118,4 +118,10 @@ public class TestController {
         log.info("-----------------------------当前剩余a:{}",a);
         return a;
     }
+
+    @GetMapping("/a")
+    public Object a(){
+        this.serviceDemo.a();
+        return null;
+    }
 }

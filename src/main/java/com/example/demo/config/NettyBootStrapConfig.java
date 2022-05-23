@@ -62,7 +62,7 @@ public class NettyBootStrapConfig implements ApplicationRunner, ApplicationListe
         if (this.channel != null){
             this.channel.close();
         }
-        log.error("netty  stop!");
+        log.warn("netty  stop!");
     }
 
     private void start() throws InterruptedException {
