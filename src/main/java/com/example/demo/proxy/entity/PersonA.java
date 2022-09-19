@@ -12,6 +12,10 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class PersonA implements IPerson {
     private PsersonEntity pserson;
+
+    public PersonA() {
+    }
+
     public PersonA(PsersonEntity pserson) {
         this.pserson = pserson;
     }

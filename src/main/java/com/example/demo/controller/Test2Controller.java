@@ -1,29 +1,21 @@
 package com.example.demo.controller;
 
 
-import com.example.demo.entity.DayOfWeekEnum;
 import com.example.demo.entity.StrategyEnum;
 import com.example.demo.service.StrategyContext;
 import com.google.common.collect.Lists;
-import io.netty.util.Constant;
-import io.netty.util.collection.IntObjectHashMap;
 import lombok.extern.slf4j.Slf4j;
 
-import org.apache.commons.collections4.CollectionUtils;
-import org.springframework.aop.framework.AopContext;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.*;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * @program: limiting-demo
@@ -60,14 +52,6 @@ public class Test2Controller {
         //System.out.println(collect2);
         prodList.sort(Comparator.comparingInt(Product::getNum).reversed());
         //System.out.println(prodList);
-
-        String s = "FRIDAY,MONDAY,THURSDAY,TUESDAY,WEDNESDAY";
-        final String collect4 = Arrays.stream(s.split(","))
-                .map(DayOfWeekEnum::valueOf)
-                .sorted(Comparator.comparingInt(DayOfWeekEnum::getIndex))
-                .map(Enum::name)
-                .collect(Collectors.joining(","));
-        //System.out.println(collect4);
 
        //pointLength();
 

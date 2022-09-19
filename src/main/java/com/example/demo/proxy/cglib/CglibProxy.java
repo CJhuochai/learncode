@@ -43,8 +43,11 @@ public class CglibProxy implements MethodInterceptor {
 
     public static <T> T createCglibProxy(T target, Callback[] callbacks){
         Enhancer enhancer = new Enhancer();
-        enhancer.setSuperclass(target.getClass());
-        enhancer.setInterfaces(target.getClass().getInterfaces());
+        if (target.getClass().isInterface()){
+            enhancer.setInterfaces(target.getClass().getInterfaces());
+        }else {
+            enhancer.setSuperclass(target.getClass());
+        }
         enhancer.setCallbacks(callbacks);
         return (T) enhancer.create();
     }
