@@ -23,12 +23,12 @@ public class TestMain {
     public static void main(String[] args) {
         final PsersonEntity person = new PsersonEntity("陈健", "hello word!");
         final PersonA personA = new PersonA(person);
-        /*final IPerson jdkProxy1 = JdkProxy.createProxyInstance(new PersonA(person), IPerson.class);
+        final IPerson jdkProxy1 = JdkProxy.createProxyInstance(new PersonA(person), IPerson.class);
         final IPerson jdkProxy2 = JdkProxy.createProxyInstance(new PersonB(person), IPerson.class);
         jdkProxy1.name();
         jdkProxy1.say();
         jdkProxy2.name();
-        jdkProxy2.say();*/
+        jdkProxy2.say();
         Callback[] callbacks = {
                 new CglibProxy(personA)};
         final PersonA cglibProxy = CglibProxy.createCglibProxy(personA,callbacks);

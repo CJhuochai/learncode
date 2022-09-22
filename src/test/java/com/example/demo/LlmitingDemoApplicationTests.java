@@ -163,7 +163,7 @@ class LlmitingDemoApplicationTests {
     }
 
     public static void main(String[] args) throws FileNotFoundException {
-        /*List<UserExport> users = new ArrayList<>();
+        List<UserExport> users = new ArrayList<>();
         for (int i = 0;i<20;i++){
             UserExport user = new UserExport();
             user.setId("chenjian:" + i);
@@ -173,7 +173,7 @@ class LlmitingDemoApplicationTests {
             users.add(user);
         }
         FileOutputStream outputStream = new FileOutputStream(new File("F:/userInfo.xlsx"));
-        EasyExcel.write(outputStream,UserExport.class).sheet("用户信息").doWrite(users);*/
+        EasyExcel.write(outputStream,UserExport.class).sheet("用户信息").doWrite(users);
         String msg = "【正邦奖】：验证码：{0}，验证码15分钟内有效，此验证码仅用于正邦奖网站的验证，请勿泄露给他人";
         final String format = MessageFormat.format(msg, "1234");
         System.out.println(format);

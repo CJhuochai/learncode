@@ -3,7 +3,7 @@ package com.example.demo.liability;
 import com.example.demo.proxy.cglib.CglibProxy;
 import org.springframework.cglib.proxy.Callback;
 
-/**
+/** 责任链模式
  * @create: 2022-09
  **/
 public class TestMain {
