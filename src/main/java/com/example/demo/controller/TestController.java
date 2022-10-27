@@ -20,6 +20,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.IntStream;
 
 /**
  * @program: limiting-demo
@@ -39,6 +40,16 @@ public class TestController {
     private UserMapper userMapper;
 
     private int a = 100;
+
+    public static void main(String[] args) {
+        String str = "ab";
+        change(str);
+        System.out.println(str);
+    }
+
+    public static void change(String str) {
+        str = "cd";
+    }
 
     /**
      * 限流策略：1秒钟2个请求
