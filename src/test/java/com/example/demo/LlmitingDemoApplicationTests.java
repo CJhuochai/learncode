@@ -3,6 +3,7 @@ package com.example.demo;
 
 import com.alibaba.excel.EasyExcel;
 import com.alibaba.fastjson.JSON;
+import com.example.demo.entity.Deadlock;
 import com.example.demo.entity.UserExport;
 import com.example.demo.listener.PersonEvent;
 import com.huochairen.cj1.pro.SmsPro;
@@ -19,15 +20,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.util.Base64Utils;
+import org.springframework.util.ReflectionUtils;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.io.*;
+import java.lang.reflect.Method;
 import java.text.MessageFormat;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.function.*;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @Slf4j
 @SpringBootTest
@@ -205,6 +209,13 @@ class LlmitingDemoApplicationTests {
         builder.append("<br>");
         builder.append("<img src='https://bgbasis-pre.oss-cn-shenzhen.aliyuncs.com/basis-mini/basis-mini/BG-CJ.jpg'>");
         return supplier.get() + builder.toString();
+    }
+    @Test
+    public void a(){
+        final Method[] allDeclaredMethods = ReflectionUtils.getAllDeclaredMethods(Deadlock.class);
+        for (Method allDeclaredMethod : allDeclaredMethods) {
+            System.out.println(allDeclaredMethod.getName());
+        }
     }
 
 }
