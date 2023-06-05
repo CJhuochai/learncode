@@ -3,11 +3,12 @@ package com.example.demo;
 
 import com.alibaba.excel.EasyExcel;
 import com.alibaba.fastjson.JSON;
+import com.example.demo.dao.UserMapper;
+import com.example.demo.entity.DbUser;
 import com.example.demo.entity.Deadlock;
 import com.example.demo.entity.UserExport;
-import com.example.demo.listener.PersonEvent;
-import com.huochairen.cj1.pro.SmsPro;
-import com.huochairen.cj1.service.ISms;
+import com.example.demo.service.ServiceDemo;
+import com.example.demo.spring.AsynTaskExecutor;
 import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -18,7 +19,7 @@ import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Base64Utils;
 import org.springframework.util.ReflectionUtils;
 import org.springframework.web.context.WebApplicationContext;
@@ -28,6 +29,8 @@ import java.lang.reflect.Method;
 import java.text.MessageFormat;
 import java.time.LocalDate;
 import java.util.*;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.function.*;
 import java.util.stream.Collectors;
@@ -41,14 +44,22 @@ class LlmitingDemoApplicationTests {
     @Autowired
     private RedissonClient redissonClient;
 
-    @Autowired
-    private ISms smsService;
+    /*@Autowired
+    private ISms smsService;*/
+
+@Autowired
+    private ServiceDemo serviceDemo;
 
     @Test
+    public void asynTest() throws Exception {
+        serviceDemo.bb();
+    }
+
+  /*  @Test
     public void testsms(){
         final SmsPro smsPro = smsService.get();
         log.info("smsp:{},send:{}",smsPro,this.smsService.send());
-    }
+    }*/
 
     @Test
     public void ds(){
@@ -111,13 +122,10 @@ class LlmitingDemoApplicationTests {
    @Autowired
    private WebApplicationContext webApplicationContext;
 
+
     @Test
     public void listener(){
-        ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
-        executor.initialize();
-        PersonEvent person = new PersonEvent("person",1,"陈健");
-        executor.execute(() -> webApplicationContext.publishEvent(person));
-        System.out.println("主线程组合完成");
+        this.serviceDemo.a();
     }
 
     @Test

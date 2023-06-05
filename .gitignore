@@ -31,3 +31,28 @@ build/
 
 ### VS Code ###
 .vscode/
+.gitignore
+cloud-config/src/test/
+cloud-config/target/generated-sources/
+cloud-server-1/cloud-server1-api/cloud-server1-api.iml
+cloud-server-1/cloud-server1-api/src/main/resources/
+cloud-server-1/cloud-server1-api/src/test/
+cloud-server-1/cloud-server1-api/target/
+cloud-server-1/cloud-server1-service/cloud-server1-service.iml
+cloud-server-1/cloud-server1-service/src/main/resources/
+cloud-server-1/cloud-server1-service/src/test/
+cloud-server-1/cloud-server1-service/target/
+cloud-server-1/server-1-web/src/test/
+cloud-server-1/server-1-web/target/classes/bootstrap-dev.yml
+cloud-server-1/server-1-web/target/classes/bootstrap.yml
+cloud-server-1/server-1-web/target/classes/generated/
+cloud-server-1/server-1-web/target/generated-sources/
+cloud-server-2/server-2-web/src/test/
+cloud-server-2/server-2-web/target/classes/bootstrap-dev.yml
+cloud-server-2/server-2-web/target/classes/bootstrap.yml
+cloud-server-2/server-2-web/target/classes/generated/
+cloud-server-2/server-2-web/target/generated-sources/
+common-parent/common-parent.iml
+common-parent/src/main/resources/
+common-parent/src/test/
+common-parent/target/

@@ -16,6 +16,7 @@ public class TestMain {
             .addHandler(new NameHandler())
             .addHandler(new PassWordHandler());
         final Handler<Person> check = builder.check();
+        check.doHandler(person);
         Callback[] callbacks = {
                 new CglibProxy(check)};
         final Handler<Person> cglibProxy = CglibProxy.createCglibProxy(check, callbacks);
